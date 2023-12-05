@@ -5,4 +5,5 @@
     <string name="add_item_field_name">Название</string>
     <string name="add_item_field_amount_name">0</string>
     <string name="ruble_sign">₽</string>
+    <string name="item_price_template">"%1$s ₽"</string>
 </resources>
