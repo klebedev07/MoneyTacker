@@ -6,4 +6,7 @@
     <string name="add_item_field_amount_name">0</string>
     <string name="ruble_sign">₽</string>
     <string name="item_price_template">"%1$s ₽"</string>
+    <string name="tab_incomes">Доходы</string>
+    <string name="tab_expenses">Расходы</string>
+    <string name="tab_balance">Баланс</string>
 </resources>

@@ -1,45 +1,64 @@
 package com.dev4team.moneytacker
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.dev4team.moneytacker.ItemsFragment.Companion.TYPE_BALANCE
+import com.dev4team.moneytacker.ItemsFragment.Companion.TYPE_EXPENSES
+import com.dev4team.moneytacker.ItemsFragment.Companion.TYPE_INCOMES
+import com.dev4team.moneytacker.ItemsFragment.Companion.TYPE_UNKNOWN
+import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val PAGE_INCOMES = 0
+        private const val PAGE_EXPENSE = 1
+        private const val PAGE_BALANCE = 2
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
+
+        val viewPager = findViewById<ViewPager>(R.id.view_pager)
+        val tabLayout = findViewById<TabLayout>(R.id.main_tabl_layout)
+
+        val adapter = MainPageAdapter(supportFragmentManager, this)
+        viewPager.adapter = adapter
+
+        tabLayout.setupWithViewPager(viewPager)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.i("MainActivity", "onResume!!!!!!")
+    class MainPageAdapter(fm: FragmentManager, private val context: Context) :
+        FragmentPagerAdapter(fm) {
+        override fun getCount(): Int {
+            return 3
+        }
 
-    }
+        override fun getItem(position: Int): Fragment {
+            return when (position) {
+                PAGE_INCOMES -> ItemsFragment.create(TYPE_INCOMES, R.layout.fragment_items)
+                PAGE_EXPENSE -> ItemsFragment.create(TYPE_EXPENSES, R.layout.fragment_items)
+                PAGE_BALANCE -> ItemsFragment.create(TYPE_BALANCE, R.layout.fragment_balance)
+                else -> ItemsFragment.create(TYPE_UNKNOWN, 0)
+            }
+        }
 
-    override fun onPause() {
-        super.onPause()
-        Log.i("MainActivity", "onPause!!!!!!")
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.i("MainActivity", "onStop!!!!!!")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i("MainActivity", "onDestroy!!!!!!")
+        override fun getPageTitle(position: Int): CharSequence? {
+            return when (position) {
+                PAGE_INCOMES -> context.getString(R.string.tab_incomes)
+                PAGE_EXPENSE -> context.getString(R.string.tab_expenses)
+                PAGE_BALANCE -> context.getString(R.string.tab_balance)
+                else -> null
+            }
+        }
     }
 }
