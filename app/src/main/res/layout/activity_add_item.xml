@@ -7,16 +7,17 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        >
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:id="@+id/add_item_topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:gravity="center_vertical"
             app:title="@string/add_item_title"
-            app:titleTextColor="@color/white" />
+            />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
@@ -62,14 +63,11 @@
 
         <Button
             android:id="@+id/add_button"
-            android:enabled="false"
             android:background="@drawable/ic_add"
             android:layout_marginStart="22dp"
             android:layout_width="26dp"
             android:layout_height="26dp"
             />
-
-
 
     </LinearLayout>
 

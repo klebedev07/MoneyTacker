@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,29 +10,35 @@
     android:background="@color/glacier"
     tools:context=".MainActivity">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        >
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/blue_dark"
-            app:title="Учет финансов"
-            android:paddingTop="30dp"/>
+            app:title="@string/main_title"
+            />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_tabl_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="top"
+            android:background="@color/blue_dark" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/main_tabl_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@color/blue_dark" />
-
     <androidx.viewpager.widget.ViewPager
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="50dp"/>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

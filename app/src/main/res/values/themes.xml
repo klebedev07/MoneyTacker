@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MoneyTacker" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--         <item name="colorPrimary">@color/material_dynamic_primary0</item>-->
+<!--         <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>-->
     </style>
 
     <style name="Theme.MoneyTacker" parent="Base.Theme.MoneyTacker" />

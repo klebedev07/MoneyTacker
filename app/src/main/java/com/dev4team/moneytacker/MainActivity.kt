@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -22,11 +23,16 @@ class MainActivity : AppCompatActivity() {
         private const val PAGE_BALANCE = 2
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+
+        val toolbar = findViewById<Toolbar>(R.id.topAppBar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayShowTitleEnabled(true)
+
 
         val viewPager = findViewById<ViewPager>(R.id.view_pager)
         val tabLayout = findViewById<TabLayout>(R.id.main_tabl_layout)

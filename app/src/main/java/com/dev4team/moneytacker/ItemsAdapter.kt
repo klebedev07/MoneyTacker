@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemListViewHolder>() {
 
-    private var items: List<Item?> = listOf()
+    private var items: MutableList<Item> = mutableListOf()
 
-    fun setData(items: List<Item?>?) {
-        this.items = items!!
+    fun setData(items: MutableList<Item>) {
+        this.items = items
         notifyDataSetChanged()
     }
 
@@ -27,7 +27,12 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ItemListViewHolder, position: Int) {
-        items[position]?.let { holder.applyData(it) }
+        items[position].let { holder.applyData(it) }
+    }
+
+    fun addItem(item: Item) {
+        items.add(items.size, item)
+        notifyItemInserted(items.size)
     }
 
     class ItemListViewHolder(

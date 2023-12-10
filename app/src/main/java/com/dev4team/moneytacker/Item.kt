@@ -1,7 +1,7 @@
 package com.dev4team.moneytacker
 
-data class Item(
-    val id: String,
+data class Item (
+    val id: String? = null,
     val title: String,
     val price: String,
     val type: String
